@@ -86,13 +86,40 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: '1st Gen College Students Decrease',
+    date: 'September 29, 2021',
+    firstParagraph: `Percentage of freshman admissions at elite  universities that are first gen college students is going down down down`,
+
+    secondParagraph: `down down down down down down down down down  `,
+
+    thirdParagraph: `...and this might be a good thing`
+  },
+  {
+    title: 'Another title to test',
+    date: 'October 18, 2021',
+    firstParagraph: `This article is from the future, but do not worry`,
+
+    secondParagraph: `time travel proves easy and fun`,
+
+    thirdParagraph: `jk I just fudged the date`
+  },{
+    title: 'Last title to test',
+    date: 'September 29, 2021',
+    firstParagraph: `Nulla officia occaecat do est Lorem Lorem esse esse nisi Lorem veniam nulla nisi. Consectetur mollit mollit consequat dolor ipsum aute duis ipsum qui occaecat sunt proident anim. Quis laborum excepteur exercitation ea cupidatat esse do occaecat et. Enim deserunt deserunt deserunt elit. Nisi id eu ex aliqua esse laboris cillum enim. Non commodo exercitation irure ea aliqua ipsum excepteur amet sunt ut adipisicing exercitation pariatur.`,
+
+    secondParagraph: `Excepteur tempor velit Lorem anim reprehenderit elit id ipsum veniam aliqua fugiat eiusmod. Occaecat amet non est sint reprehenderit reprehenderit ullamco. Dolore ut irure irure culpa consequat incididunt veniam. Fugiat qui sit et magna ad eu culpa labore. Irure quis amet ipsum sit nostrud enim officia. Dolor dolore id cupidatat et consectetur mollit laborum culpa in id.`,
+
+    thirdParagraph: `Culpa Lorem commodo sunt dolore sit consectetur qui sit dolor magna nisi quis sint ipsum. Ut mollit veniam laboris fugiat aliqua labore elit incididunt magna eu incididunt qui. Dolor veniam ad ex irure. Culpa adipisicing ex ex est nisi exercitation occaecat. Nulla nisi officia reprehenderit culpa pariatur excepteur amet incididunt labore duis ea minim proident.`
   }
 ];
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
-  and returns a DOM node looking like the one below:
+  and returns a DOM node looking like the one below: 
+
 
   <div class="article">
     <h2>{title of the article}</h2>
@@ -102,7 +129,48 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+ */
 
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+  const containerEl = document.createElement('div');
+  const titleEl = document.createElement('h2');
+  const dateEl = document.createElement('p');
+  const p1El = document.createElement('p');
+  const p2El = document.createElement('p');
+  const p3El = document.createElement('p');
+  const expandButtonEl = document.createElement('span');
+
+  containerEl.appendChild(titleEl);
+  containerEl.appendChild(dateEl);
+  containerEl.appendChild(p1El);
+  containerEl.appendChild(p2El);
+  containerEl.appendChild(p3El);
+  containerEl.appendChild(expandButtonEl);
+
+  
+  containerEl.classList.add('article');
+  dateEl.classList.add('date');
+  expandButtonEl.classList.add('expandButton');
+
+  titleEl.textContent = title;
+  dateEl.textContent = date;
+  p1El.textContent = firstParagraph;
+  p2El.textContent = secondParagraph;
+  p3El.textContent = thirdParagraph;
+  expandButtonEl.textContent = '+';
+
+  expandButtonEl.addEventListener('click', () => containerEl.classList.toggle('article-open'));
+
+  return containerEl
+
+}
+const articlesDiv = document.querySelector('div.articles');
+
+data.map(a => {
+  articlesDiv.appendChild(articleMaker(a));
+})
+
+/* 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
