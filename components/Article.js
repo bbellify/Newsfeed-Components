@@ -95,6 +95,23 @@ const data = [
     secondParagraph: `down down down down down down down down down  `,
 
     thirdParagraph: `...and this might be a good thing`
+  },
+  {
+    title: 'Another title to test',
+    date: 'October 18, 2021',
+    firstParagraph: `This article is from the future, but do not worry`,
+
+    secondParagraph: `time travel proves easy and fun`,
+
+    thirdParagraph: `jk I just fudged the date`
+  },{
+    title: 'Last title to test',
+    date: 'September 29, 2021',
+    firstParagraph: `Nulla officia occaecat do est Lorem Lorem esse esse nisi Lorem veniam nulla nisi. Consectetur mollit mollit consequat dolor ipsum aute duis ipsum qui occaecat sunt proident anim. Quis laborum excepteur exercitation ea cupidatat esse do occaecat et. Enim deserunt deserunt deserunt elit. Nisi id eu ex aliqua esse laboris cillum enim. Non commodo exercitation irure ea aliqua ipsum excepteur amet sunt ut adipisicing exercitation pariatur.`,
+
+    secondParagraph: `Excepteur tempor velit Lorem anim reprehenderit elit id ipsum veniam aliqua fugiat eiusmod. Occaecat amet non est sint reprehenderit reprehenderit ullamco. Dolore ut irure irure culpa consequat incididunt veniam. Fugiat qui sit et magna ad eu culpa labore. Irure quis amet ipsum sit nostrud enim officia. Dolor dolore id cupidatat et consectetur mollit laborum culpa in id.`,
+
+    thirdParagraph: `Culpa Lorem commodo sunt dolore sit consectetur qui sit dolor magna nisi quis sint ipsum. Ut mollit veniam laboris fugiat aliqua labore elit incididunt magna eu incididunt qui. Dolor veniam ad ex irure. Culpa adipisicing ex ex est nisi exercitation occaecat. Nulla nisi officia reprehenderit culpa pariatur excepteur amet incididunt labore duis ea minim proident.`
   }
 ];
 
@@ -147,6 +164,11 @@ function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParag
   return containerEl
 
 }
+const articlesDiv = document.querySelector('div.articles');
+
+data.map(a => {
+  articlesDiv.appendChild(articleMaker(a));
+})
 
 /* 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
@@ -156,17 +178,6 @@ function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParag
 
   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
-
-*/
-
-const articlesDiv = document.querySelector('div.articles');
-
-data.map(a => {
-  articlesDiv.appendChild(articleMaker(a));
-})
-
-
-/*
 
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
